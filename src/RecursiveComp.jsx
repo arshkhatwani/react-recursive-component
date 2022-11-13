@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 
 function RecursiveComp({ data }) {
-  const [showChildren, setShowChildren] = useState(-1);
+  const len = data.length;
+  const [showChildren, setShowChildren] = useState(Array(len).fill(false));
+
+  const setChildrenIndex = (index) => {
+    setShowChildren((prevState) => {
+      var newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
 
   return (
     <div>
@@ -11,14 +20,16 @@ function RecursiveComp({ data }) {
             <span
               onClick={() => {
                 if (!item.isFolder) return;
-                setShowChildren((prev) => (prev == index ? -1 : index));
+                setChildrenIndex(index);
               }}
             >
               {item.name}
             </span>
 
-            {showChildren == index && item.children && (
-              <RecursiveComp data={item.children} />
+            {item.children && (
+              <div style={{ display: showChildren[index] ? "block" : "none" }}>
+                <RecursiveComp data={item.children} />
+              </div>
             )}
           </div>
         );
