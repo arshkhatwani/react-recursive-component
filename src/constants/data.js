@@ -35,4 +35,9 @@ export const data = [
       },
     ],
   },
+  {
+    isFolder: false,
+    name: "package.json",
+    children: [],
+  },
 ];
