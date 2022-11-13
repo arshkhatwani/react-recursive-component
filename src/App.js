@@ -1,7 +1,10 @@
+import { data } from "./constants/data";
+import RecursiveComp from "./RecursiveComp";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <RecursiveComp data={data} />
     </div>
   );
 }
